@@ -1,0 +1,211 @@
+{% import "CartongMSFBundle:MapCentre:macros.html.twig" as macros %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>MSF Map Centre</title>
+
+        <link rel="icon" type="image/gif" href="{{ asset('bundles/cartongmsf/msf_favicon.ico') }}"/>
+
+{% block stylesheets %}
+        <!-- Bootstrap -->
+        <link href="{{ asset('bundles/cartongmsf/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bundles/cartongmsf/css/sticky-footer-navbar.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bundles/cartongmsf/css/bootstrap-select.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bundles/cartongmsf/css/msf.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bundles/cartongmsf/css/typeahead.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+{% block banner %}
+        <div id="banner">
+            <div class="container">
+                <div class="col-md-8">
+                    <div class="logo">
+                        <a href="#"><img src="{{ asset('bundles/cartongmsf/images/logo.msf.png') }}"/></a>
+                    </div>
+                    <div class="title">OC Geneva - Map Centre</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pull-right utilities">
+                        {% if app.user %}
+                        <a href="{{ path('cartong_msf_mapcentre_logout') }}"class="link">
+                            <span class="icon icon-key"></span> ({{ app.user.username }}) {{ 'Logout'|trans }}
+                        </a>
+                        {% else %}
+                        <a href="{{ path('cartong_msf_mapcentre_login') }}" class="link"><span class="icon icon-key"></span> {{ 'Login'|trans }}</a>
+                        {% endif %}
+                        |
+						<a href="{{ path('cartong_msf_mapcentre_contact') }}" class="link">Contact</a>
+						  |
+                        <select class="selectpicker" id="language-switcher">
+                            <option data-content="<img src='{{ asset('bundles/cartongmsf/images/United Kingdom(Great Britain).png') }}'/> {{ 'English'|trans }}" value="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all())|merge({ '_locale': 'en' })) }}" {% if app.request.locale == 'en' %}selected="selected"{% endif %}>{{ 'English'|trans }}</option>
+                            <option data-content="<img src='{{ asset('bundles/cartongmsf/images/France.png') }}'/> {{ 'French'|trans }}" value="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all())|merge({ '_locale': 'fr' })) }}" {% if app.request.locale == 'fr' %}selected="selected"{% endif %}>{{ 'French'|trans }}</option>
+                        </select>
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block header %}
+        <div id="header">
+            <div class="container">
+                <!--nav class="navbar navbar-default" role="navigation"-->
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <!--div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="brand" href="#">
+                            <img src="msf/logo.png" />
+                        </a>
+                    </div-->
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <!--div class="collapse navbar-collapse" id="main-navbar"-->
+                        <div class="col-md-8">
+                            <ul class="nav nav-pills">
+                                <li {% if app.request.get('_route') == 'cartong_msf_mapcentre_index' %}class="active"{% endif %}><a href="{{ path('cartong_msf_mapcentre_index') }}">{{ 'Home'|trans }}</a></li>
+                                <li {% if app.request.get('_route') == 'cartong_msf_mapcentre_search' %}class="active"{% endif %}><a href="{{ path('cartong_msf_mapcentre_search') }}">{{ 'Catalog'|trans }}</a></li>
+                                <li><a href="{{ asset('MAP_REQUEST_FORM.pdf') }}" download="Map_Request_Form.pdf">{{ 'Request form'|trans }}</a></li>
+                                <li {% if app.request.get('_route') == 'cartong_msf_mapcentre_submission' %}class="active"{% endif %}><a href="{{ path('cartong_msf_mapcentre_submission') }}">{{ 'Submission'|trans }}</a></li>
+                                 <li {% if app.request.get('_route') == 'cartong_msf_mapcentre_tools' %}class="active"{% endif %}><a href="{{ path('cartong_msf_mapcentre_tools') }}">{{ 'Tools'|trans }}</a></li>
+							
+                            </ul>
+                        </div>
+                        <div class="col-md-3 col-md-offset-1">
+                            <form class="navbar-form" role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control typeahead" placeholder="{{ 'Search map...'|trans }}">
+                                </div>
+                            </form>
+                        <!--/div-->
+                    </div><!-- /.navbar-collapse -->
+					 
+                <!--/nav-->
+            </div>
+        </div>
+								
+{% endblock %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block content %}
+								 <div id="emergencies">
+									<div id="content">
+								{% if is_granted('ROLE_ADMIN') %}
+                               {% if app.request.get('_route') == 'cartong_msf_mapcentre_emergenciesadmin' %}{% endif %}
+								<a href="{{ path('cartong_msf_mapcentre_emergenciesadmin') }}"> <button class="btn btn-danger-primary btn-danger " >{{ 'Emergencies'|trans }}</button></a>
+                                {% endif %}
+								</div>
+								</div>
+	
+{% endblock %}
+
+{% block footer %}
+        <div id="footer">
+            <div class="container">
+                <div class="col-md-8">
+                    Powered by <strong><a href="#">GeoNetwork OpenSource</a></strong>
+                </div>
+                <div class="col-md-4">
+                    <p class="text-right">
+                        <a href="{{ path('cartong_msf_mapcentre_index') }}">{{ 'Home'|trans }}</a> | <a href="{{ path('cartong_msf_mapcentre_about') }}">{{ 'About'|trans }}</a> | <a href="{{ path('cartong_msf_mapcentre_contact') }}" class="link">Contact</a> | <a href="{{ path('cartong_msf_mapcentre_help') }}">{{'Help'|trans}}</a> | <a href="{{ path('cartong_msf_mapcentre_disclaimer') }}">{{ 'Disclaimer'|trans }}</a> | <a href="{{ path('cartong_msf_mapcentre_credit') }}">{{ 'Credits'|trans }}</a>
+                    </p> 
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block scripts %}
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="{{ asset('bundles/cartongmsf/js/underscore-min.js') }}"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="{{ asset('bundles/cartongmsf/js/bootstrap-select.js') }}"></script>
+        <script src="{{ asset('bundles/cartongmsf/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('bundles/cartongmsf/js/typeahead.bundle.min.js') }}"></script>
+        <script>
+        jQuery(document).ready(function() {
+            jQuery('.selectpicker').selectpicker();
+            jQuery('#language-switcher').change(function() {
+                document.location = jQuery(this).val();
+            });
+
+            var suggestedItems = new Bloodhound({
+                remote: {
+                    url: '{{ path('cartong_msf_mapcentre_suggest') }}?q=%QUERY',
+                    filter: function(data) {
+                        return _.map(data[1], function(d) { return { value: d }; });
+                    },
+                },
+                datumTokenizer: function(d) { 
+                    return Bloodhound.tokenizers.whitespace(d.value); 
+                },
+                queryTokenizer: Bloodhound.tokenizers.whitespace
+            });
+             
+            suggestedItems.initialize();
+             
+            jQuery('.typeahead').typeahead(null, {
+                name: 'search',
+                displayKey: 'value',
+                source: suggestedItems.ttAdapter()
+            });
+            jQuery('.typeahead').on('change typeahead:selected typeahead:autocompleted', function() {
+                var url = '{{ path('cartong_msf_mapcentre_search') }}?any_OR_geokeyword=' + jQuery(this).val() + '*';
+                document.location = url;
+            });
+        });
+
+$(document).on('pageshow', '#index', function(){     
+    $("#custom-btn").buttonMarkup({corners: false });    
+    $('[data-role="content"]').height(getRealContentHeight());
+    
+    $('.ui-btn-inner').css({
+        position:'absolute',
+        top: (getRealContentHeight() - $('.ui-btn-inne').outerHeight())/2
+    });    
+});
+
+function getRealContentHeight() {
+    var header = $.mobile.activePage.find("div[data-role='header']:visible");
+    var footer = $.mobile.activePage.find("div[data-role='footer']:visible");
+    var content = $.mobile.activePage.find("div[data-role='content']:visible:visible");
+    var viewport_height = $(window).height();
+    
+    var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
+    if((content.outerHeight() - header.outerHeight() - footer.outerHeight()) <= viewport_height) {
+        content_height -= (content.outerHeight() - content.height());
+    } 
+    return content_height - 1;
+}
+	  </script>
+{% endblock %}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52019552-1', 'msf.org');
+  ga('send', 'pageview');
+
+</script>
+    </body>
+</html>

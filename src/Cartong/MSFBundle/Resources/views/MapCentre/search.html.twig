@@ -1,0 +1,126 @@
+{% extends "CartongMSFBundle:MapCentre:layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <script src="{{ asset('bundles/cartongmsf/js/cartong.minimap.js') }}"></script>
+    <script>
+jQuery(document).ready(function() {
+    jQuery('[data-toggle="tooltip"]').tooltip();
+});
+    </script>
+{% endblock %}
+
+{% block jumbotron %}
+        <div class="jumbotron-main"></div>
+        <div id="breadcrumb">
+            <div class="container">
+                <span class="glyphicon glyphicon-home"></span> <small><small><span class="glyphicon glyphicon-play"></span></small></small> <a href="#">{{ 'Search results'|trans }}</a>
+                {# % if breadcrumbs|length > 0 %}
+                    <small><small><span class="glyphicon glyphicon-play"></small></small>
+                    {% for breadcrumb in breadcrumbs %}
+                     <a href="{{ breadcrumb.url }}" data-toggle="tooltip" data-placement="bottom" title="{{ breadcrumb.value }}">{{ breadcrumb.value }} <span class="glyphicon glyphicon-remove"></span></a>
+                    {% endfor %}
+                {% endif % #}
+            </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+{{ parent() }}
+        <div id="map-list">
+            <div class="container">
+                <div class="col-md-3">
+                    <div>
+                        <h4 class="page-header">{{ 'Preview'|trans }}</h4>
+                        
+                        <div id="minimap"></div>
+					
+                        <div class="filter-title">
+                            <h4 class="page-header">{{ 'Filter'|trans }}</h4>
+                            {% if breadcrumbs|length > 0 %}<a href="{{ clearFilterUrl }}" class="remove-filters">{{ 'Remove all filters'|trans }}<span class="glyphicon glyphicon-remove link"></span></a>{% endif %}
+                        </div>
+						
+                        <div id="facets" class="facets">
+                            {# listes des filtres possibles #}
+                            <ul>
+                            {% for keyPlural,values in summary %}
+                                {% if not(keyPlural starts with '@') %}
+                                    {% if values|length > 0 or breadcrumbs[keyPlural] is defined %}
+                                    <li>
+                                        <a href="#{{ keyPlural }}" data-toggle="collapse" >
+                                            <button class="btn btn-filter  btn-lg active">{{ keyPlural|trans }}<span class="caret"></span></button>
+                                        </a>
+                                    </li>
+
+                                    {# listes des items possibles #}
+                                    <ul id="{{ keyPlural }}" class="collapse {% if breadcrumbs[keyPlural] is defined %}in{% endif %}">
+                                    {% if breadcrumbs[keyPlural] is defined %}
+                                        {% for value in breadcrumbs[keyPlural] %}
+                                            <li><a href="{{ value.url }}">{{ value.name|trans }} <span class="glyphicon glyphicon-remove facet-count link"></span></a></li>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% for value in values %}
+                                        <li><a href="{{ baseUri }}&{{ value.taxonomy }}[]={{ value.name }}">{{ value.name|trans }}<span class="facet-count">({{ value.count }})</span></a></li>
+                                    {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+				
+
+                <div class="col-md-9">
+                    <h4 class="page-header">{{ 'Search results (%total% items)'|trans({'%total%': total}) }}</h4>
+                    {% for row in maps|batch(4) %}
+                    <div class="row">
+                    {% for map in row %}
+                        <div class="col-md-3">
+                        <div class="map-thumbnail">
+                            <div class="map-info" {% if map.geobox is defined %}data-geobox="{{ map.geobox }}"{% endif %} data-uuid="{{ map.uuid }}">
+                                <div class="map-title">
+                                    {{ map.title|length > 50 ? map.title|slice(0, 50) ~ '...' : map.title  }}
+                                </div>
+                                <div class="map-download">
+                                    {# @todo possible to retrieve size? #}
+                                </div>
+                                <div class="map-more-info">
+                                    {{ map.abstract|length > 90 ? map.abstract|slice(0, 90) ~ '...' : map.abstract  }}
+                                </div>
+                                <div class="show-link">
+                                    <a class="btn btn-primary btn-block" role="button" href="{{ path('cartong_msf_mapcentre_view') }}?uuid={{ map.uuid }}">{{ 'Show this map'|trans }} <span class="glyphicon glyphicon-play glyphicon-play-search"></span></a>
+                                </div>
+                            </div>
+                            <img src="{{ map.image|default('http://placehold.it/184x140') }}" width="100%" />
+                        </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    {% endfor %}
+                    <div class="row navigation">
+                        <ul class="pagination">
+                            {% set newFrom = max(1, from - limit) %}
+                            {% set newTo = max(limit, to - limit) %}
+                            <li><a href="{{ navigationUri }}&from={{ newFrom }}&to={{ newTo }}">«</a></li>
+                            {% for i in 0..total//limit %}
+                                {% set newFrom = i * limit + 1 %}
+                                {% set newTo = min(total, (i + 1) * limit) %}
+                                <li {% if from == newFrom %}class="active"{% endif %}><a href="{{ navigationUri }}&from={{ newFrom }}&to={{ newTo }}">{{ i + 1 }}</a></li>
+                            {% endfor %}
+                            {% set newFrom = max(total - limit, from + limit) %}
+                            {% set newTo = min(total, to + limit) %}
+                            <li><a href="{{ navigationUri }}&from={{ newFrom }}&to={{ newTo }}">»</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "CartongMSFBundle:MapCentre:layout.html.twig" %}
+
+{% block jumbotron %}
+        <div class="jumbotron-main"></div>
+        <div id="breadcrumb">
+            <div class="container">
+            </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+{{ parent() }}
+        <div id="">
+            <div class="container mygrid-wrapper-div">
+                <div class="col-md-12">
+                    <h1 class="page-header">Help</h1>
+					<div class="col-md-8 intro">
+                  <h4> This page provides helpful information about how to use the Map Centre.</h4>
+				  	<h3 id="search-map">1. Search your maps or data</h3>
+					<p><b>Emergency Maps</b>: Countries are classified in Emergency by the GIS focal Point. For all countries in emergencies, the web is monitored daily and all relevant products from other organizations are loaded on the Map Centre. 
+					These products are directly available through the home page and the Emergencies Box..</p><br>
+					
+					<p><b>Latest products added</b> on the Map Centre are directly shown on the first page. </p><br>
+					
+					<p>You can search for your <b>specific product</b> using the Catalog Tab in the main menu and applying different filters.
+					A search box is as well available. It allows you to search by typing a keyword.</p><br>
+					
+					As soon as you have found and selected your product, you get access to more information on the product and the download feature.<br>
+					
+					<h3 id="request-map">2. Request a specific map</h3>
+					<p>You didn't find what you are looking for ?</p><br>
+					<p>No problem, click on the <b>Request Tab</b> in the main menu to access the request form.<br>
+					Please take your time to <b>correctly fill</b> this form and send it to your GIS Focal point.<br>
+					Do not forget to add your <b>AOI</b> and your own data you would like to add.
+					</p><p><br>
+					Your <b>GIS Focal Point</b> will validate your request and forward it to the GIS Unit.
+					Depending on your request you will receive an answer soon.</p><br>
+					
+					<h3 id="submit-map">3. Submit and share your own data</h3>
+					<p>MSF is looking for <b>Health Area, Health Centres</b> and <b>interested field Maps !</b></p><br>
+					<p>
+					If you've got this treasure in your office, laptop in whatever format, please send them and share them.
+					It will be very useful for all MSF Staff and more ! </p><br>
+					
+					<p>Any format is accepted : Excel, Power Point, Word, Picture, PDF, KML, SHP, ....</p>
+					<p>We regularly work with all sorts of formats!</p><br>
+					
+					<p>Go to <b>Submission Tab</b> in the main menu, Fill the form and attach your data !</p>
+					
+					<h3 id="discover">4. Discover useful GIS Tools </h3>
+					<p>You are interested in <b>GIS</b> and you want to learn more ?</p><br>
+					<p>Go to <b>Tools Tab</b> in the main menu. You will find useful guidelines for different tools.</p><br>
+					You don't find what you are looking for ? Please contact us !
+				</div>
+				<div class="col-md-4 intro">
+				  <button class=" btn btn-filter  btn-lg active" disabled="disabled">Menu</button>
+				  <div class="col-md-12 box"><ol>
+				  	 <li><a href="#search-map"> Search your Maps or data</a></li>
+					 <li><a href="#request-map"> Request a specific map</a></li>
+					 <li><a href="#submit-map"> Submit and share your own data</a></li>
+					 <li><a href="#discover"> Discover useful GIS Tools</a></li></ol>
+																
+					</div>
+				</div>
+            </div>
+        </div>
+{% endblock %}

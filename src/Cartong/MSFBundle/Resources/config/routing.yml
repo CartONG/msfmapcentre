@@ -1,0 +1,14 @@
+root:
+    pattern: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: cartong_msf_mapcentre_index
+        _locale: en
+        permanent: true
+
+default:
+    resource: "@CartongMSFBundle/Controller/MapCentreController.php"
+    type:     annotation
+    prefix: /{_locale}
+    requirements:
+        _locale: ^en|fr$

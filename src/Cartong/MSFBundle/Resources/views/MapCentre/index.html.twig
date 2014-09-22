@@ -1,0 +1,90 @@
+{% extends "CartongMSFBundle:MapCentre:layout.html.twig" %}
+
+{% block jumbotron %}
+        <div class="jumbotron">
+            <div class="container">
+                <div class="col-md-5">
+                 <!--   <h5>{{ 'Welcome to the'|trans }}</h5>-->
+                    <h2>MSF-CH MAP CENTRE <small>v.beta</small></h2>
+                   <p>{{ 'Welcome to our internal application for sharing maps and geographic data for MSF staff.'|trans }}</p>
+                   <p><a class="btn btn-primary" role="button" href="{{ path('cartong_msf_mapcentre_search') }}">{{ 'Browse catalog'|trans }} <span class="glyphicon glyphicon-play"></span></a></p>
+                </div>
+                <div class="col-md-3 col-md-offset-4 jumbo">
+				
+					
+                    <div class="list-group row table-emergencies">
+					
+					<span class="list-group-item ">
+                            {{ 'EMERGENCIES'|trans }} (OCG's)
+                        </span>
+					</div><div class="col-md-6 list-group">	
+                        
+                        {# We limit number of displayed emergencies to 3 with maximum 25 characters for each  #}
+                        {% for emergency in emergencies[:5] %}
+                        <a href="{{ path('cartong_msf_mapcentre_search') }}?geoDescCode[]={{ emergency }}" class="list-group-item">{{ emergency | length > 11 ? emergency[:11] ~ '...' : emergency }} </a>
+                        {% endfor %}
+                        <!--a href="{{ showAllUri }}" class="list-group-item show-all">{{ 'Show all'|trans }} <span class="pull-right glyphicon glyphicon-play"></span></a--> 
+					   
+					</div>
+					
+					
+					 <div class="col-md-6 list-group">
+                        {# We limit number of displayed emergencies to 3 with maximum 25 characters for each  #}
+                        {% for emergency in emergencies[5:10] %}
+                        <a href="{{ path('cartong_msf_mapcentre_search') }}?geoDescCode[]={{ emergency }}" class="list-group-item">{{ emergency | length > 11 ? emergency[:11] ~ '...' : emergency }}  </a>
+                        {% endfor %}
+                        <!--a href="{{ showAllUri }}" class="list-group-item show-all">{{ 'Show all'|trans }} <span class="pull-right glyphicon glyphicon-play"></span></a--> 
+					   </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+{{ parent() }}
+        <div id="content">
+            <div class="container">
+                <h4 class="page-header home">{{ 'Recently added maps'|trans }}</h4>
+                <div class="row">
+                    {% for map in recentMaps %}
+                    <div class="col-md-3">
+                    <div class="map-thumbnail home">
+                        <div class="map-info">
+                            <div class="map-title-home">
+                               {{ map.title|length > 35 ? map.title|slice(0, 35) ~ '...' : map.title  }}
+                            </div>
+                            <div class="map-download">
+                                
+                            </div>
+                            <div class="map-more-info-home">
+                                {{ map.abstract }}
+                            </div>
+                            <div class="show-link">
+                                <a class="btn btn-primary btn-block" role="button" href="{{ path('cartong_msf_mapcentre_view') }}?uuid={{ map.uuid }}">Show this map <span class="glyphicon glyphicon-play"></span></a>
+                            </div>
+                        </div>
+                        <!--img src="{{ map.image|default('http://placehold.it/230x230') }}" width="230" height="230" /-->
+                        <img src="{{ map.image|default('http://placehold.it/260x230') }}" width="100%" />
+                    </div>
+                    </div>
+                    {% endfor %}
+                </div>
+				<div class="about-index intro">
+               <h4 class="page-header">{{ 'About map centre'|trans }}</h4>
+			     <div class="col-md-6">
+				 <p>This Map Centre is composed of a library of maps and (soon) a centralized database allowing users or dedicated applications - such as QGis or ArcGIS - to access reference maps and data.
+				The Map Centre is a participative platform since : </p>
+				 </div>
+			     <div class="col-md-6">
+				<li>users are allowed to request maps and tools through their GIS focal point</li>
+				<li>users & GIS field officers submit their own mapping production & data through the <a href="{{ path('cartong_msf_mapcentre_submission') }}">Submission</a> platform of the Map Centre.</li>
+
+				<p>See <a href="{{ path('cartong_msf_mapcentre_contact') }}">Contact</a> for access to the GIS UNIT or FOCAL point.</p>
+              
+                   </div>
+                 
+				</div>
+             
+            </div>
+        </div>
+{% endblock %}

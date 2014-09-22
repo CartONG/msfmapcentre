@@ -1,0 +1,76 @@
+{% extends "CartongMSFBundle:MapCentre:layout.html.twig" %}
+
+{% block jumbotron %}
+        <div class="jumbotron-main"></div>
+        <div id="breadcrumb">
+            <div class="container">
+			 <span class="glyphicon glyphicon-home"></span> <small><small><span class="glyphicon glyphicon-play"></span></small></small> <a href="#">{{ 'Submission'|trans }}</a>
+            </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+{{ parent() }}
+        <div id="">
+            <div class="container">
+                <div class="col-md-12">
+                    <h1 class="page-header">{{'Send your data!'|trans }}</h1>
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        <div class="alert alert-success">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('error') %}
+                        <div class="alert alert-danger">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+					</div>
+				 <div class="col-md-8 intro">
+				
+					Le Map Centre est un outil collaboratif. 
+					C'est aussi une plate-forme de partage d'informations. Toutes les contributions sont les bienvenues. 
+					Données, cartes et tout autre produit seront évalués par la GIS Unit avant d'être mis à disposition dans le Map Centre.
+					Merci pour votre précieuse collaboration ! 
+			
+                    <form role="form" enctype="multipart/form-data" action="{{ path('cartong_msf_mapcentre_postsubmission') }}" method="post">
+                        <div class="form-group">
+                            <label for="name">{{ 'Name'|trans }}</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="{{ 'Enter your name...'|trans }}" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">{{ 'Email address'|trans }}</label>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="{{ 'Enter your email...'|trans }}" required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">{{ 'Upload file'|trans }}</label>
+                            <input type="file" name="file" id="file" required="required"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">{{ 'Send'|trans }}</button>
+                    </form>
+                </div>
+				
+				
+								
+				
+				 <div class="col-md-4 intro">
+				  <button class=" btn btn-filter  btn-lg active" disabled="disabled">MSF RECHERCHE :</button>
+				  <div class="col-md-12 box">
+					Particulièrement : 
+						<ul>
+						<li>Aires de Santé</li>
+						<li>Centres de Santé</li>
+						<li>Cartes terrain</li>
+						</ul>
+					Tout format est exploitable :
+						<ul>
+						<li>PDF, Excel files, fichiers Word</li>
+						<li>Fichiers PPT, photos, schémas</li>
+						<li>Shapefiles, KML ...</li>
+						</ul>
+																
+					</div>
+				</div>
+            </div>
+        </div>
+{% endblock %}

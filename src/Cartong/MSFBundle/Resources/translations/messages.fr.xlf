@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>keywords</source>
+                <target>Thèmes</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>createDateYears</source>
+                <target>Années</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>types</source>
+                <target>Types</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>orgNames</source>
+                <target>Organisations</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>geoDescCodes</source>
+                <target>Pays</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>keyword</source>
+                <target>Thème</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>createDateYear</source>
+                <target>Année</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>type</source>
+                <target>Type</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>orgName</source>
+                <target>Organisation</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>geoDescCode</source>
+                <target>Pays</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Home</source>
+                <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Catalog</source>
+                <target>Catalogue</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Request form</source>
+                <target>Demande</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Send your data!</source>
+                <target>Envoyez vos données !</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Tools</source>
+                <target>Outils</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Emergencies</source>
+                <target>Urgences</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Search map...</source>
+                <target>Rechercher...</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Preview</source>
+                <target>Prévisualisation</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Filter</source>
+                <target>Filtre</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Search results</source>
+                <target>Résultats de recherche</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>Search results (%total% items)</source>
+                <target>Résultats de recherche (%total% entrées)</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Logout</source>
+                <target>Déconnecter</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Sitemap</source>
+                <target>Plan du site</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Sitemap</source>
+                <target>Plan du site</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Site notice</source>
+                <target>Mentions légales</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Browse catalog</source>
+                <target>Voir le catalogue</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Countries in emergency</source>
+                <target>Pays en état d'urgence</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>Recently added maps</source>
+                <target>Produits récemment ajoutés</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>About map centre</source>
+                <target>A propos du map centre</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>Enter your name...</source>
+                <target>Entrez votre nom...</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Email address</source>
+                <target>Adresse courriel</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>Enter your email...</source>
+                <target>Entrez votre adresse courriel...</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>Show all</source>
+                <target>Afficher tout</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>Please login</source>
+                <target>Se connecter</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>Login...</source>
+                <target>Identifiant...</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>Password...</source>
+                <target>Mot de passe...</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>Sign in</source>
+                <target>Connexion</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>Login</source>
+                <target>Connexion</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>Upload file</source>
+                <target>Téléverser un fichier</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>Send</source>
+                <target>Envoyer</target>
+            </trans-unit>
+			 <trans-unit id="42">
+                <source>Download</source>
+                <target>Télécharger</target>
+            </trans-unit>
+			<trans-unit id="43">
+                <source>About</source>
+                <target>A Propos</target>
+            </trans-unit>
+			<trans-unit id="44">
+                <source>Help</source>
+                <target>Aide</target>
+            </trans-unit>
+			<trans-unit id="45">
+			  <source>Welcome to our internal application for sharing maps and geographic data for MSF staff.</source>
+				<target>Bienvenue sur notre outil de partage de cartes et autres produits géographiques à usage du Staff MSF.</target> 
+			</trans-unit>
+			<trans-unit id="46">
+                <source>Base Map</source>
+                <target>Carte de base</target>
+            </trans-unit>
+			<trans-unit id="47">
+                <source>Environment</source>
+                <target>Environnement</target>
+            </trans-unit>
+			<trans-unit id="48">
+                <source>Health</source>
+                <target>Santé</target>
+            </trans-unit>
+			<trans-unit id="49">
+                <source>Infrastructure and Transport</source>
+                <target>Infrastructure et Transport</target>
+            </trans-unit>
+			<trans-unit id="50">
+                <source>Water and Sanitation</source>
+                <target>Eau, Hygiène et Assainissement</target>
+            </trans-unit>
+			<trans-unit id="51">
+                <source>Security and Safety</source>
+                <target>Sécurité et Protection</target>
+            </trans-unit>
+			<trans-unit id="52">
+                <source>Hydrology</source>
+                <target>Hydrologie</target>
+            </trans-unit>
+			<trans-unit id="53">
+                <source>Natural and technological Disaster</source>
+                <target>Catastrophe Naturelle et Technologique</target>
+            </trans-unit>
+			<trans-unit id="54">
+                <source>Refugees and Displaced Population</source>
+                <target>Population déplacée et réfugiée</target>
+            </trans-unit>
+			<trans-unit id="55">
+                <source>Logistics</source>
+                <target>Logistique</target>
+            </trans-unit>
+			<trans-unit id="56">
+                <source>Operational Research / Study</source>
+                <target>Etudes/Recherche opérationnelle</target>
+            </trans-unit>	
+			<trans-unit id="57">
+                <source>Submission</source>
+                <target>Contribution</target>
+            </trans-unit>
+			 <trans-unit id="58">
+                <source>EMERGENCIES</source>
+                <target>URGENCES</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

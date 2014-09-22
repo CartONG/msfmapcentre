@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>keywords</source>
+                <target>Themes</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>createDateYears</source>
+                <target>Years</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>types</source>
+                <target>Types</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>orgNames</source>
+                <target>Organizations</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>geoDescCodes</source>
+                <target>Countries</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>keyword</source>
+                <target>Theme</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>createDateYear</source>
+                <target>Year</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>type</source>
+                <target>Type</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>orgName</source>
+                <target>Organization</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>geoDescCode</source>
+                <target>Country</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

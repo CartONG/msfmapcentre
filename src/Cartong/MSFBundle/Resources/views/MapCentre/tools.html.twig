@@ -1,0 +1,74 @@
+{% extends "CartongMSFBundle:MapCentre:layout.html.twig" %}
+
+{% block jumbotron %}
+        <div class="jumbotron-main"></div>
+        <div id="breadcrumb">
+            <div class="container">
+						 <span class="glyphicon glyphicon-home"></span> <small><small><span class="glyphicon glyphicon-play"></span></small></small> <a href="#">{{ 'Tools'|trans }}</a>
+            </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+{{ parent() }}
+ 
+								
+						
+    <div id="">
+    <div class="container">
+    <div class="col-md-12">
+    <h1 class="page-header">{{ 'Tools'|trans }}</h1>
+                   
+    </div>
+	<div class="col-md-12">			
+	 <h4>Document</h4>
+		<div class="row row-table grey">
+			<div class="col-md-1"><span class="icon glyphicon glyphicon-list-alt" title="Technical Brief"></span>	</div>
+			<div class="col-md-10">How To Draw and Share your Area of Interest with Google Earth</div>
+			<div class="col-md-1 red"><a href="{{ asset('library/Procedure definition polygone interet.pdf') }}" target="_blank" class=""><span class="glyphicon glyphicon-download" title="{{ 'Download'|trans }}"></span></a></div>
+		</div>
+		
+		<div class="row row-table">
+			<div class="col-md-1"><span class="icon glyphicon glyphicon-list-alt" title="Technical Brief"></span>	</div>
+			<div class="col-md-10">User Guide for Mapping in MSF Mission with Google Earth [OCBA 2012]</div>
+			<div class="col-md-1 red"><a href="{{ asset('library/Google_Earth_MANUAL_EN.pdf') }}" target="_blank" class=""><span class="glyphicon glyphicon-download" title="{{ 'Download'|trans }}"></span></a></div>
+		</div>
+		
+		<div class="row row-table grey">
+			<div class="col-md-1"><span class="icon glyphicon glyphicon-list-alt" title="Technical Brief"></span>	</div>
+			<div class="col-md-10">PDF Layers manager</div>
+			<div class="col-md-1 red"><a href="{{ asset('library/PDFLayers.pdf') }}" target="_blank" class=""><span class="glyphicon glyphicon-download" title="{{ 'Download'|trans }}"></span></a></div>
+		</div>
+		<div class="row row-table ">
+			<div class="col-md-1"><span class="icon glyphicon glyphicon-list-alt" title="Technical Brief"></span>	</div>
+			<div class="col-md-10">Guide to Joekit and Tallykit [OCA 2012]</div>
+			<div class="col-md-1 red"><a href="{{ asset('library/Guide_to_Joekit_and_Tallykit_141112.pdf') }}" target="_blank" class=""><span class="glyphicon glyphicon-download" title="{{ 'Download'|trans }}"></span></a></div>
+		</div>
+		
+		<div class="row row-table grey">
+			<div class="col-md-1"><span class="glyphicon glyphicon-flag icon" title="Policies"></span>	</div>
+			<div class="col-md-10">State of art and opportunities using Geographic information Systems in MSF [OCG 2013]</div>
+			<div class="col-md-1 red"><a href="{{ asset('library/GIS Study_OCG for intersection_0713-1.pdf') }}" target="_blank" class=""><span class="glyphicon glyphicon-download" title="{{ 'Download'|trans }}"></span></a></div>
+		</div>
+		
+		<div class="row row-table ">
+			<div class="col-md-1"><span class="glyphicon glyphicon-flag icon" title="Policies"></span>	</div>
+			<div class="col-md-10">Development of the Geographic Information System in MSF-CH [OCG 2014]</div>
+			<div class="col-md-1 red"><a href="{{ asset('library/OCG-GIS-strategy2014-15_lightV.pdf') }}" target="_blank" class=""><span class="glyphicon glyphicon-download" title="{{ 'Download'|trans }}"></span></a></div>
+		</div>
+		<div class="row row-table grey">
+			<div class="col-md-1"><span class="glyphicon glyphicon-flag icon" title="Policies"></span>	</div>
+			<div class="col-md-10">CASE STUDY: GIS Support for the MSF Ebola Response in Guinea [OCG 2014]</div>
+			<div class="col-md-1 red"><a href="{{ asset('library/Case_Study.pdf')}}"target="_blank" class=""><span class="glyphicon glyphicon-download" title="{{ 'Download'|trans }}"></span></a></div>
+		</div>
+	
+	</div>
+		
+	
+         
+    </div>
+					
+				
+    </div>
+        
+{% endblock %}

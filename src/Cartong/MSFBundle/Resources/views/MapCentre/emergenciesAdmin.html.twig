@@ -1,0 +1,43 @@
+{% extends "CartongMSFBundle:MapCentre:layout.html.twig" %}
+
+{% block jumbotron %}
+        <div class="jumbotron-main"></div>
+        <div id="breadcrumb">
+            <div class="container">
+            </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+{{ parent() }}
+        <div id="">
+            <div class="container">
+			     <div class="col-md-12">
+					
+                   
+				   
+				  
+					<h4 class="page-header"><a href="{{ path('cartong_msf_mapcentre_index') }}"><button class="btn btn-primary btn-back"><span class="glyphicon glyphicon-play spin"></span>&nbsp&nbsp;BACK</button></a> Emergencies admin </h4>
+					
+                   
+				   {% if countries|length == 0 %}
+                    No country defined in the mapcenter. Please add some metadata and come back here...
+                    {% else %}
+                    <form action="{{ path('cartong_msf_mapcentre_postemergenciesadmin') }}" method="POST">
+                        {% for country in countries %}
+                            <label>
+                                <input type="checkbox" name="emergencies[]" value="{{ country.name }}" {% if country.checked is defined and country.checked %}checked="checked"{% endif %}/>
+                                    {{ country.name }}
+                                    {% if country.icon is defined %}
+                                        <input type="hidden" name="icons[{{ country.name }}]" value="{{ country.icon }}"/>
+                                        <img src="/images/{{ country.icon }}""/>
+                                    {% endif %}
+                            </label><br/>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+{% endblock %}

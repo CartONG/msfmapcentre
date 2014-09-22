@@ -1,0 +1,68 @@
+{% extends "CartongMSFBundle:MapCentre:layout.html.twig" %}
+
+{% block jumbotron %}
+        <div class="jumbotron-main"></div>
+        <div id="breadcrumb">
+            <div class="container">
+            </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+{{ parent() }}
+        <div id="">
+            <div class="container">
+                <div class="col-md-12">
+                    <h1 class="page-header">Aide</h1>
+					<div class="col-md-8 intro">
+                  <h4> Vous trouverez ici les informations utiles pour utiliser le Map Centre</h4>
+				  	<h3 id="search-map">1. Recherche de cartes ou de données</h3>
+					<p><b>Pays "Urgences"</b> : Les pays sont classés comme "en urgence" par le GIS Focal Point. 
+					Pour tous ces pays, une veille quotidienne est effectuée et les informations pertinentes, cartes ou données, provenant d'autres organisations sont mises sur le Map Centre.
+					Ces produits sont directement accessible à travers le module Urgence sur la page d'accueil.</p><br>
+					
+					<p><b>Produits récemment ajoutés</b> sur le Map Centre sont affichés sur la page d'accueil. </p><br>
+					
+					<p>Pour rechercher un <b>produit spécifique</b>, vous pouvez utiliser l'onglet Catalogue sur le menu principal et affiner votre choix en fonction des différents filtres.
+					Une fonction recherche est également disponible en haut à droite de votre écran. Elle vous permet une recherche par mots-clés.</p><br>
+					
+					Dès que vous avez trouvé votre produit, vous pouvez le sélectionner pour accéder à plus d'informations ainsi que pour le télécharger.<br>
+					
+					<h3 id="request-map">2. Demande de carte</h3>
+					<p>Vous n'avez pas trouvé ce que vous recherchiez ?</p><br>
+					<p>Cliquez sur <b>l'onglet Demande</b> dans le menu principal pour télécharger le formulaire de demande.<br>
+					Prenez soin de <b>bien remplir correctement et exhaustivement</b> ce formulaire puis envoyez le à votre GIS Focal Point.<br>
+					N'oubliez pas d'ajouter votre <b>AOI</b> et vos éventuelles données que vous souhaiteriez ajouter.
+					</p><p><br>
+					Votre <b>GIS Focal Point</b> validera votre demande et la transmettras à la GIS Unit.
+					Votre demande sera traitée dans les délais impartis et vous recevrez rapidement une réponse.</p><br>
+					
+					<h3 id="submit-map">3. Contribution et partage</h3>
+					<p>MSF recherche <b>les Aires de Santé, Centres de Santé</b> et toutes autres <b>cartes terrains intéressantes !</b></p><br>
+					<p>
+					Si vous avez dans votre bureau, sur votre ordinateur ou dans vos archives des documents relatifs à ces thématiques : n'hésitez pas: envoyez-les et partagez-les !
+					Ils seront utiles pour MSF mais aussi pour la communauté ! </p><br>
+					
+					<p>Tous les formats sont acceptés : Excel, Power Point, Word, Picture, PDF, KML, SHP, ....</p>
+					<p>Nous travaillons régulièrement avec toutes sortes de formats et sources variées de données !</p><br>
+					
+					<p>Allez sur l'onglet <b>Contribution</b> sur le menu principal, remplissez le formulaire et joignez vos fichiers ! </p>
+					
+					<h3 id="discover">4.Outils pour le GIS </h3>
+					<p>Vous êtes intéressé par le<b>GIS</b> et vous voulez en savoir plus ?</p><br>
+					<p>Allez sur<b>l'onglet Outils</b> dans le menu principal. Vous trouverez ici des tutoriels et diverses documentations concernant le GIS.</p><br>
+					Vous ne trouvez pas ce que vous recherchez ? Contactez-nous !
+				</div>
+				<div class="col-md-4 intro">
+				  <button class=" btn btn-filter  btn-lg active" disabled="disabled">Menu</button>
+				  <div class="col-md-12 box"><ol>
+				  	 <li><a href="#search-map"> Recherche de cartes ou de données</a></li>
+					 <li><a href="#request-map"> Demande de carte</a></li>
+					 <li><a href="#submit-map"> Contribution et partage</a></li>
+					 <li><a href="#discover"> Outils pour le GIS</a></li></ol>
+																
+					</div>
+				</div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "CartongMSFBundle:MapCentre:layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+        <link href="{{ asset('bundles/cartongmsf/css/login.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block jumbotron %}
+        <div class="jumbotron-main"></div>
+        <div id="breadcrumb">
+            <div class="container">
+            </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+
+        <div id="">
+            <div class="container">
+                <div class="col-md-12">
+                    <form class="form-signin" role="form" method="POST" action="{{ path('cartong_msf_mapcentre_postlogin') }}">
+                        <h2 class="form-signin-heading">{{ 'Please login'|trans }}</h2>
+                        {% for flashMessage in app.session.flashbag.get('notice') %}
+                            <div class="alert alert-success">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+                        {% for flashMessage in app.session.flashbag.get('error') %}
+                            <div class="alert alert-danger">
+                                {{ flashMessage }}
+                            </div>
+                        {% endfor %}
+                        {% if error %}
+                            <div class="alert alert-danger">
+                                {{ error.message }}
+                            </div>
+                        {% endif %}
+                        <input type="login" name="_username" class="form-control" placeholder="{{ 'Login...'|trans }}" required="required" autofocus="autofocus"/>
+                        <input type="password" name="_password" class="form-control" placeholder="{{ 'Password...'|trans }}" required="required"/>
+                        <!--label class="checkbox">
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label-->
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ 'Sign in'|trans }}</button>
+				    </form>
+			
+                </div>
+				
+            </div>
+        </div>
+{% endblock %}

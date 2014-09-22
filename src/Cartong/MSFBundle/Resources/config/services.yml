@@ -1,0 +1,14 @@
+parameters:
+    geonetwork.url: "http://msfmapcentre.cartong.org/geonetwork/"
+
+services:
+    geonetwork_client:
+        class: Cartong\MSFBundle\Geonetwork\Client
+        arguments: [ '%geonetwork.url%' ]
+
+    geonetwork_authenticator:
+        class: Cartong\MSFBundle\Security\GeonetworkAuthenticator
+        arguments: ["@geonetwork_client"]
+
+    webservice_user_provider:
+        class: Cartong\MSFBundle\Security\UserProvider

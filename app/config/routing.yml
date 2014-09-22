@@ -1,0 +1,4 @@
+cartong_msf:
+    resource: "@CartongMSFBundle/Resources/config/routing.yml"
+    prefix:   /
+

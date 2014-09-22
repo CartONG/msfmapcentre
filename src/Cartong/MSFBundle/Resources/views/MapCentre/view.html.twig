@@ -1,0 +1,146 @@
+{% extends "CartongMSFBundle:MapCentre:layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <script src="{{ asset('bundles/cartongmsf/js/cartong.minimap.js') }}"></script>
+    <script src="{{ asset('bundles/cartongmsf/js/jquery.clipboard.js') }}"></script>
+    <script>
+jQuery(document).ready(function() {
+    jQuery('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        if (jQuery(e.target).attr('href')==='#geo')
+        {
+            // Do this now because is has not been done previously (the map was hidde).
+            var map = jQuery('#minimap').data('map');
+            var globalBound = jQuery('#minimap').data('globalBound');
+            map.invalidateSize();
+            map.fitBounds(globalBound);
+        }
+    });
+    jQuery('button.btn-back').click(function() {
+        history.back();
+        return false;
+    });
+
+    // Disables other default handlers on click (avoid issues)
+    jQuery('button.copy').on('click', function(e) {
+        e.preventDefault();
+    });
+
+    // Apply clipboard click event
+    jQuery('button.copy').clipboard({
+        path: '{{ asset('bundles/cartongmsf/js/jquery.clipboard.swf') }}',
+        copy: function() {
+            var _this = jQuery(this);
+            _this.closest('a').tooltip({ animation: true });
+            _this.closest('a').tooltip('show');
+            setTimeout(function() {
+                _this.closest('a').tooltip('hide');
+            }, 5000);
+            return _this.closest('a').attr('href');
+        }
+    });
+});
+    </script>
+{% endblock %}
+
+{% block jumbotron %}
+        <div class="jumbotron-main"></div>
+        <div id="breadcrumb">
+            <div class="container">
+           
+		   </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+{{ parent() }}
+    <div class="container">
+		<div class="col-md-1 back-view">
+			<a href="{{ path('cartong_msf_mapcentre_search') }}"><button class="btn btn-primary btn-back"><span class="glyphicon glyphicon-play spin"></span>&nbsp&nbsp;BACK</button></a> 
+		</div>
+		<div class="col-md-8 page-header-view" >
+			<h4 ><span class="title">{{ title }}</span></h4>
+		</div>
+		<div class="col-md-3 date-view" >
+		Published on {{ publicationDate }} by {{ author }}
+		</div>
+		
+        <div class="metadata view-simple">
+            <div class="col-md-9 main-content">
+              <button class=" btn btn-filter  btn-lg active" disabled="disabled">Description</button>
+				<div class="box">{{ abstract|converturls }}
+				</div>
+                <img class="thumbnail-view" src="{{ thumbnail }}" alt="{{ title }}" title="{{ title }}" width="100%"/>
+             <button class=" btn btn-filter  btn-lg active" disabled="disabled">Further Information</button>
+             <div class="col-md-12 box">
+				<div class="row">
+					<div class="col-md-2"> Publication date:</div>
+					<div class="col-md-4 td-view">{{ publicationDate }}</div>
+					<div class="col-md-3"> Confidentiality Level: </div>
+					<div class="col-md-3 td-view"> {{ confidentialityLevel }}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2"> Author:</div>
+					<div class="col-md-4 td-view"> {{ owner }}</div>
+					<div class="col-md-3"> Theme(s): </div>
+					<div class="col-md-3 td-view"> {{ keywords }}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2">Print Dimensions</div>
+					<div class="col-md-4 td-view">{{ printDimensions }}</div>
+					<div class="col-md-3">Country(ies): </div>
+					<div class="col-md-3 td-view">{{ countries }}</div>
+				</div>
+		
+            </div>			
+			</div>
+
+			<div class="col-md-3">
+				<button class=" btn btn-filter  btn-lg active" disabled="disabled">Ownership</button>
+					<div class="col-md-12 box">
+					<div class="col-md-5">
+                        {% for owner, ownerLogo in ownerLogos %}
+                        <img src="{{ ownerLogo }}" title="{{ owner }}" alt="{{ owner }}" width="100%"/>
+                        {% endfor %}
+					</div>
+						<div class="col-md-7"> {{ owner }}</div>
+					</div>
+			
+				 {# Set active by default otherwise leaflet cannot initialize the map #}
+				<button class=" btn btn-filter  btn-lg active" disabled="disabled" data-geobox="{{ geobox }}">{{ 'LOCATION EXTENT'|trans }}</button>
+					<div class="col-md-12 box ">
+						<div id="minimap" data-map-interactive="false">
+						</div>
+					</div>  
+				<button class=" btn btn-filter  btn-lg active" disabled="disabled">Download</button>
+					<div class="col-md-12 box subbox">
+					Available formats to download:<br/>{{ printDimensions }}
+					</div>
+					<div class="col-md-12 box">
+					 <a href="{{ url }}"><button class="btn btn-lg btn-primary btn-block btn-view" >{{ 'DOWNLOAD'|trans }} {% if contentSize %}({{ macros.bytesToSize(contentSize) }}){% endif %}<span class="glyphicon glyphicon-download icon"></span></button></a>
+					</div>
+				<button class=" btn btn-filter  btn-lg active" disabled="disabled">Sharing</button>
+					<div class="col-md-12 box subbox">
+					Share this information: Copy the link
+					</div>
+					<div class="col-md-12 box">
+					 <a href="{{ url }}" class="copy-link" data-toggle="tooltip" title="{{ 'The download link has been copied to clipboard'|trans }}" data-trigger="manual"><button class="btn btn-lg btn-block btn-view copy">{{ 'COPY LINK'|trans }}<span class="glyphicon glyphicon-share icon"></span></button></a>
+					</div>
+					
+			  
+                
+            </div>
+           
+                   
+                    
+               
+            
+        </div>
+    </div>
+{% endblock %}
